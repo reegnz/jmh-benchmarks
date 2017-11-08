@@ -1,0 +1,20 @@
+apply plugin: "java"
+apply plugin: "application"
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	jmhVersion = "1.19"
+}
+
+dependencies {
+    compile "org.openjdk.jmh:jmh-core:${jmhVersion}"
+    compileOnly "org.openjdk.jmh:jmh-generator-annprocess:${jmhVersion}"
+}
+
+mainClassName = "org.openjdk.jmh.Main"
+
+compileJava.options.annotationProcessorGeneratedSourcesDirectory = file("${buildDir}/generated/source/apt")
+
